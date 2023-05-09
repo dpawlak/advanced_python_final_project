@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Project</title>
+    <style>
+        .navbar {}
+        
+    </style>
+</head>
+<body>
+
+
+    <div class='navbar'>
+        <a href="{% url 'welcome'  %}">Home</a>
+        <a href="{% url 'index'  %}">Items</a>
+        <a href="{% url 'transactions'  %}">Transactions</a>
+        <a href="{% url 'customers'  %}">Customers</a>
+        <a href=''>Cart</a>
+
+    </div>
+
+{% block content %}  
+{% endblock %}
+</body>
+</html>

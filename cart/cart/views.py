@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 
 
 def index(request):
-	return HttpResponse("Advanced Python Final Project: Welcome Page")
-
-	# Begin homepage here
+	template = loader.get_template("welcome.html")
 	
+	return render(request, "welcome.html")

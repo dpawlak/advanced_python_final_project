@@ -2,6 +2,8 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+import uuid
 
 class Item(models.Model):
     item_name = models.CharField(default="Item", max_length=50)
@@ -10,15 +12,13 @@ class Item(models.Model):
     price = models.FloatField(default=0.00)
     publish_date = models.DateTimeField("date published")
 
-
     def __str__(self):
     	return self.item_name
  
- 
+
 class Transaction(models.Model):
-
-
-	quantity_of_item = models.ForeignKey(Item, default=0, on_delete=models.CASCADE)	
+	item = models.ForeignKey(Item, on_delete=models.CASCADE)
+	quantity_of_item = models.IntegerField(default=1)	
 	discount = models.FloatField(default=0.0)
 	purchaser_name = models.CharField(max_length=50)
 	address = models.CharField(max_length=50)
@@ -28,5 +28,11 @@ class Transaction(models.Model):
 		return self.purchase_date >= timezone.now() - datetime.timedelta(days=1)
 
 	def __str__(self):
-   	    return self.quantity_of_item
- 
+   	    return str(self.item)
+
+class Customer(models.Model):
+	first_name = models.CharField(max_length=50)
+	last_name = models.CharField(max_length=50)
+
+	def __str__(self):
+		return self.first_name + ' ' + self.last_name

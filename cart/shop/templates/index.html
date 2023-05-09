@@ -1,20 +1,38 @@
-<h1>Hello from index page in shop app</h1>
+{% extends "base.html" %}
+{% block content %}
+
+	<h1>Shopping Cart Index Page</h1>
 
 {% if latest_item_list %}
 
-	<ul>
+	<ol>
 
-	{% for item in latest_item_list %}
-		
-		<p>{{item}}</p>
-		<p>{{description}}</p>
-	{% endfor %}
+		<table border="1">
 
-	</ul>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+			
+			{% for item in latest_item_list %}
+
+			<tr>
+				<td>{{item.id}}</td>
+				<td> <a href="{% url 'detail' item.item_name %}">{{item.item_name}}</a></td>
+				<td>{{item.description}}</td>
+			</tr>
+			
+
+			{% endfor %}
+		</table>
+
+	</ol>
 
 {% else %}
 
 	<p>No items are available</p>
 
 {% endif %}
+{% endblock %}
 

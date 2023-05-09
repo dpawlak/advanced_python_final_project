@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h1>Transaction</h1>
+{% if transaction_list %}
+	{% for transaction in transaction_list %}
+		<p>{{transaction}}</p>
+	{% endfor %}
+{% else %}
+	<p>There are no transactions</p>
+{% endif %}
+	
+{% endblock %}
